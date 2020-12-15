@@ -4,7 +4,7 @@ export BERT_BASE_DIR="./bert_model/chinese_L-12_H-768_A-12"
 python bert/run_classifier.py \
 --task_name=mytask \
 --do_train=true \
---do_eval=false \
+--do_eval=true \
 --do_predict=false \
 --data_dir=$DATA_DIR/ \
 --vocab_file=$BERT_BASE_DIR/vocab.txt \

@@ -910,7 +910,9 @@ def main(_):
         seq_length=FLAGS.max_seq_length,
         is_training=True,
         drop_remainder=True)
-    estimator.train(input_fn=train_input_fn, max_steps=num_train_steps)
+    tensors_to_log={'train loss':'loss/Mean:0'}  #修改
+    logging_hook = tf.train.LoggingTensorHook(tensors=tensors_to_log,every_n_iter=20)
+    estimator.train(input_fn=train_input_fn, max_steps=num_train_steps, hooks=[logging_hook])
 
   if FLAGS.do_eval:
     eval_examples = processor.get_dev_examples(FLAGS.data_dir)
